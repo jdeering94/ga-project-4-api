@@ -1,0 +1,62 @@
+# Modify this code to update the DB schema diagram.
+# To reset the sample schema, replace everything with
+
+
+Song
+-
+SongID PK int
+Name
+Album FK >- Album.AlbumID
+Artist FK >- Artist.ArtistID
+Description text
+spotify_link text
+
+Artist
+-
+ArtistID PK int
+Name text
+
+Album
+-
+AlbumID PK int
+Image text
+
+Film
+-
+FilmID PK int
+Title text
+Year int
+Director text
+image text
+
+
+Film_Songs_join_table
+-
+song FK >- Song.SongID
+film FK >- Film.FilmID
+
+User
+-
+UserID PK int FK >- Liked_Songs.UserID
+Username text
+Password text
+Profile_picture text
+
+Liked_Songs
+-
+SongID FK >- Song.SongID
+UserID
+
+Reviews
+-
+ReviewID PK int
+Username FK >- User.Username
+SongID FK >- Song.SongID
+Review text
+Usage int
+
+Song_context
+-
+context text
+SongID FK >- Song.SongID
+FilmID FK >- Film.FilmID
