@@ -8,12 +8,16 @@ class Artist (models.Model):
 class Album (models.Model):
   name = models.CharField(max_length=100)
   image = models.CharField(max_length=200)
+  def __str__(self):
+    return self.name
 
 class Film (models.Model):
   title = models.CharField(max_length=50)
   Year = models.IntegerField()
   Director = models.CharField(max_length=50)
   image = models.CharField(max_length=200)
+  def __str__(self):
+    return self.title
 
 class Song (models.Model):
   name = models.CharField(max_length=200)
