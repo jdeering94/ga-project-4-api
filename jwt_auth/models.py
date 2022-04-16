@@ -1,3 +1,10 @@
 from django.db import models
+from songs.models import Song
+from django.contrib.auth.models import AbstractUser
 
-# Create your models here.
+class CustomUser(AbstractUser):
+  image = models.CharField(max_length=200)
+  liked_songs = models.ManyToManyField(Song, related_name='liked_by', default=None)
+
+  def __str__(self):
+    return f"{self.username}"

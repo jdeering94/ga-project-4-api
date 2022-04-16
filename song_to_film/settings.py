@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'jwt_auth',
     'songs',
 ]
 
@@ -135,3 +136,5 @@ REST_FRAMEWORK = {
         'jwt_auth.authentication.JWTAuthentication',
     ],
 }
+
+AUTH_USER_MODEL = 'jwt_auth.CustomUser'
