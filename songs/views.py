@@ -235,3 +235,64 @@ class AlbumRetrieveUpdateDelete(APIView):
             return Album.objects.get(pk=pk)
         except Album.DoesNotExist:
             raise NotFound(detail="Can't find that album")
+
+class ContextListCreate(APIView):
+  def get(self, request):
+
+        contexts = Context.objects.all()
+
+        serialized_contexts = PopulatedContextSerializer(contexts, many=True)
+
+        return Response(data=serialized_contexts.data, status=status.HTTP_200_OK)
+
+  def post(self, request):
+
+      song = request.data.get('song')
+      film = request.data.get('film')
+      try:
+        existing_context = Context.objects.filter(song=song, film=film)
+        if existing_context:
+          print(existing_context)
+          return Response({'message': 'context already exists'})
+      except Context.DoesNotExist:
+          pass
+
+      context_serializer = ContextSerializer(data=request.data)
+
+      if context_serializer.is_valid():
+
+          context_serializer.save()
+
+          return Response(data=context_serializer.data, status=status.HTTP_200_OK)
+
+      return Response(data=context_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class ContextRetrieveUpdateDelete(APIView):
+
+    def get(self, request, pk):
+        context = self.get_context(pk=pk)
+
+        serialized_context = PopulatedContextSerializer(context)
+
+        return Response(data=serialized_context.data, status=status.HTTP_200_OK)
+
+
+    def put(self, request, pk):
+
+        context_to_update = self.get_context(pk=pk)
+
+        updated_context = ContextSerializer(context_to_update, data=request.data)
+
+        if updated_context.is_valid():
+
+            updated_context.save()
+
+            return Response(updated_context.data, status=status.HTTP_200_OK)
+
+        return Response(data=updated_context.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    def get_context(self, pk):
+        try:
+            return Context.objects.get(pk=pk)
+        except Context.DoesNotExist:
+            raise NotFound(detail="Can't find that context")
