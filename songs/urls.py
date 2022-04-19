@@ -10,4 +10,6 @@ urlpatterns = [
     path('artist-detail/<int:pk>/', ArtistRetrieveUpdateDelete.as_view()),
     path('album-list/', AlbumListCreate.as_view()),
     path('album-detail/<int:pk>/', AlbumRetrieveUpdateDelete.as_view()),
+    path('contexts/', ContextListCreate.as_view()),
+    path('context-detail/<int:pk>/', ContextRetrieveUpdateDelete.as_view()),
 ]

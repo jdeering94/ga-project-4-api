@@ -43,3 +43,12 @@ class PopulatedAlbumSerializer(AlbumSerializer):
 
 class PopulatedArtistSerializer(ArtistSerializer):
   songs = PopulatedSongSerializer(many=True)
+
+class ContextSerializer(serializers.ModelSerializer):
+    class Meta:
+      model = Context
+      fields = ('__all__')
+
+class PopulatedContextSerializer(ContextSerializer):
+  song = SongSerializer()
+  film = FilmSerializer()
