@@ -37,3 +37,9 @@ class SongWithoutFilmInfo(SongSerializer):
 
 class PopulatedFilmSerializer(FilmSerializer):
   songs = SongWithoutFilmInfo(many=True)
+
+class PopulatedAlbumSerializer(AlbumSerializer):
+  songs = SongSerializer(many=True)
+
+class PopulatedArtistSerializer(ArtistSerializer):
+  songs = PopulatedSongSerializer(many=True)

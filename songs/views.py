@@ -117,3 +117,121 @@ class FilmRetrieveUpdateDelete(APIView):
             return Film.objects.get(pk=pk)
         except Film.DoesNotExist:
             raise NotFound(detail="Can't find that film")
+
+class ArtistListCreate(APIView):
+  def get(self, request):
+
+        artists = Artist.objects.all()
+
+        serialized_artists = PopulatedArtistSerializer(artists, many=True)
+
+        return Response(data=serialized_artists.data, status=status.HTTP_200_OK)
+
+  def post(self, request):
+
+      name = request.data.get('name')
+      try:
+        existing_artist = Artist.objects.get(name=name)
+        if existing_artist:
+          return Response({'message': 'artist already exists'})
+      except Artist.DoesNotExist:
+          pass
+
+      artist_serializer = ArtistSerializer(data=request.data)
+
+      if artist_serializer.is_valid():
+
+          artist_serializer.save()
+
+          return Response(data=artist_serializer.data, status=status.HTTP_200_OK)
+
+      return Response(data=artist_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class ArtistRetrieveUpdateDelete(APIView):
+
+    def get(self, request, pk):
+        artist = self.get_artist(pk=pk)
+
+        serialized_artist = PopulatedArtistSerializer(artist)
+
+        return Response(data=serialized_artist.data, status=status.HTTP_200_OK)
+
+
+    def put(self, request, pk):
+
+        artist_to_update = self.get_artist(pk=pk)
+
+        updated_artist = ArtistSerializer(artist_to_update, data=request.data)
+
+        if updated_artist.is_valid():
+
+            updated_artist.save()
+
+            return Response(updated_artist.data, status=status.HTTP_200_OK)
+
+        return Response(data=updated_artist.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    def get_artist(self, pk):
+        try:
+            return Artist.objects.get(pk=pk)
+        except Artist.DoesNotExist:
+            raise NotFound(detail="Can't find that artist")
+
+class AlbumListCreate(APIView):
+  def get(self, request):
+
+        albums = Album.objects.all()
+
+        serialized_albums = PopulatedAlbumSerializer(albums, many=True)
+
+        return Response(data=serialized_albums.data, status=status.HTTP_200_OK)
+
+  def post(self, request):
+
+      name = request.data.get('name')
+      try:
+        existing_album = Album.objects.get(name=name)
+        if existing_album:
+          return Response({'message': 'album already exists'})
+      except Album.DoesNotExist:
+          pass
+
+      album_serializer = AlbumSerializer(data=request.data)
+
+      if album_serializer.is_valid():
+
+          album_serializer.save()
+
+          return Response(data=album_serializer.data, status=status.HTTP_200_OK)
+
+      return Response(data=album_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class AlbumRetrieveUpdateDelete(APIView):
+
+    def get(self, request, pk):
+        album = self.get_album(pk=pk)
+
+        serialized_album = PopulatedAlbumSerializer(album)
+
+        return Response(data=serialized_album.data, status=status.HTTP_200_OK)
+
+
+    def put(self, request, pk):
+
+        album_to_update = self.get_album(pk=pk)
+
+        updated_album = AlbumSerializer(album_to_update, data=request.data)
+
+        if updated_album.is_valid():
+
+            updated_album.save()
+
+            return Response(updated_album.data, status=status.HTTP_200_OK)
+
+        return Response(data=updated_album.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    def get_album(self, pk):
+        try:
+            return Album.objects.get(pk=pk)
+        except Album.DoesNotExist:
+            raise NotFound(detail="Can't find that album")
