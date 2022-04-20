@@ -27,7 +27,6 @@ class AlbumSerializer(serializers.ModelSerializer):
 
 class PopulatedSongSerializer(SongSerializer):
 
-  films = FilmSerializer(many=True)
   artist = ArtistSerializer()
   album = AlbumSerializer()
 
