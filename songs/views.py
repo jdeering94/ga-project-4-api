@@ -72,13 +72,13 @@ class FilmListCreate(APIView):
 
         films = Film.objects.all()
 
-        serialized_films = PopulatedFilmSerializer(films, many=True)
+        serialized_films = FilmSerializer(films, many=True)
 
         return Response(data=serialized_films.data, status=status.HTTP_200_OK)
 
     def post(self, request):
 
-        film_serializer = FilmSerializer(data=request.data)
+        film_serializer = PopulatedFilmSerializer(data=request.data)
 
         if film_serializer.is_valid():
 
@@ -267,15 +267,7 @@ class ContextListCreate(APIView):
 
       return Response(data=context_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class ContextRetrieveUpdateDelete(APIView):
-
-    def get(self, request, pk):
-        context = self.get_context(pk=pk)
-
-        serialized_context = PopulatedContextSerializer(context)
-
-        return Response(data=serialized_context.data, status=status.HTTP_200_OK)
-
+class ContextUpdateDelete(APIView):
 
     def put(self, request, pk):
 
@@ -296,3 +288,13 @@ class ContextRetrieveUpdateDelete(APIView):
             return Context.objects.get(pk=pk)
         except Context.DoesNotExist:
             raise NotFound(detail="Can't find that context")
+
+class ContextRetrieveBySongAndFilm(APIView):
+
+    def get(self, request):
+        
+        context = Context.objects.filter(song=song_pk, film=film_pk)
+
+        serialized_context = PopulatedContextSerializer(context)
+
+        return Response(data=serialized_context.data, status=status.HTTP_200_OK)

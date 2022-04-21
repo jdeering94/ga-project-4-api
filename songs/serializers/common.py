@@ -1,4 +1,7 @@
 from rest_framework import serializers
+
+from jwt_auth.models import CustomUser
+from jwt_auth.serializers import UserSerializer
 from ..models import *
 
 class SongSerializer(serializers.ModelSerializer):
@@ -29,6 +32,8 @@ class PopulatedSongSerializer(SongSerializer):
 
   artist = ArtistSerializer()
   album = AlbumSerializer()
+  films = FilmSerializer(many=True)
+  liked_by = UserSerializer(many=True)
 
 class SongWithoutFilmInfo(SongSerializer):
   artist = ArtistSerializer()

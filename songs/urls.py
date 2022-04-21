@@ -11,5 +11,6 @@ urlpatterns = [
     path('album-list/', AlbumListCreate.as_view()),
     path('album-detail/<int:pk>/', AlbumRetrieveUpdateDelete.as_view()),
     path('contexts/', ContextListCreate.as_view()),
-    path('context-detail/<int:pk>/', ContextRetrieveUpdateDelete.as_view()),
+    path('context-detail/<int:pk>/', ContextUpdateDelete.as_view()),
+    path('context-detail/<int:song_pk>/<int:film_pk>/', ContextRetrieveBySongAndFilm.as_view()),
 ]
