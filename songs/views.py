@@ -296,8 +296,8 @@ class ContextRetrieveBySongAndFilm(APIView):
       songId = request.GET.get('songId')
       filmId = request.GET.get('filmId')
         
-      context = list(Context.objects.filter(song=songId, film=filmId).values())
+      context = list(Context.objects.filter(song=songId, film=filmId))
 
-      serialized_context = PopulatedContextSerializer(context[0])
+      serialized_context = PopulatedContextSerializer(context, many=True)
 
       return Response(data=serialized_context.data, status=status.HTTP_200_OK)
