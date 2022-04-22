@@ -13,4 +13,5 @@ urlpatterns = [
     path('contexts/', ContextListCreate.as_view()),
     path('context-detail/<int:pk>/', ContextUpdateDelete.as_view()),
     path('context-detail/', ContextRetrieveBySongAndFilm.as_view()),
+    path('song-contexts/', ContextRetrieveAllForSong.as_view()),
 ]

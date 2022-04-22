@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from jwt_auth.models import CustomUser
+# from jwt_auth.models import CustomUser
 from jwt_auth.serializers import UserSerializer
 from ..models import *
 

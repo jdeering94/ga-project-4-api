@@ -301,3 +301,15 @@ class ContextRetrieveBySongAndFilm(APIView):
       serialized_context = PopulatedContextSerializer(context, many=True)
 
       return Response(data=serialized_context.data, status=status.HTTP_200_OK)
+
+class ContextRetrieveAllForSong(APIView):
+
+    def get(self, request):
+
+      songId = request.GET.get('songId')
+        
+      context = list(Context.objects.filter(song=songId))
+
+      serialized_context = PopulatedContextSerializer(context, many=True)
+
+      return Response(data=serialized_context.data, status=status.HTTP_200_OK)

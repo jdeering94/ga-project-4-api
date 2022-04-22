@@ -1,12 +1,14 @@
 from datetime import datetime, timedelta
 from rest_framework.views import APIView
+from rest_framework.generics import UpdateAPIView
 from rest_framework.response import Response
-from rest_framework.exceptions import PermissionDenied
+from rest_framework.exceptions import PermissionDenied, NotFound
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import get_user_model
 from django.conf import settings
 import jwt
 from .serializers import UserSerializer
+from .user_serializer import CustomUserSerializer
 User = get_user_model()
 
 class RegisterView(APIView):
@@ -49,7 +51,8 @@ class LoginView(APIView):
         token = jwt.encode(
           {
             'sub': user.id,
-            'exp': int(dt.strftime('%s'))
+            'exp': int(dt.strftime('%s')),
+            'username': user.username
           }, 
           settings.SECRET_KEY, 
           algorithm='HS256'
@@ -61,7 +64,42 @@ class CredentialsView(APIView):
     permission_classes = [IsAuthenticated,]
 
     def get(self, request):
-        serializer = UserSerializer(request.user)
+        serializer = CustomUserSerializer(request.user)
         return Response(serializer.data)
 
 
+class UpdateUserView(UpdateAPIView):
+  queryset = User.objects.all()
+  serializer_class = CustomUserSerializer
+
+class AddLikedSong(APIView):
+  permission_classes = [IsAuthenticated,]
+  def post(self, request):
+    songId = request.GET.get('songId')
+    user_to_update = self.get_user(pk=request.user.id)
+    user_to_update.liked_songs.add(songId)
+    user_to_update.save()
+    return Response(status=201)
+
+
+
+  def get_user(self, pk):
+      try:
+            return User.objects.get(pk=pk)
+      except User.DoesNotExist:
+          raise NotFound(detail="Can't find that user")
+
+class RemoveLikedSong(APIView):
+  permission_classes = [IsAuthenticated,]
+  def put(self, request):
+    songId = request.GET.get('songId')
+    user_to_update = self.get_user(pk=request.user.id)
+    user_to_update.liked_songs.remove(songId)
+    user_to_update.save()
+    return Response(status=201)
+
+  def get_user(self, pk):
+      try:
+            return User.objects.get(pk=pk)
+      except User.DoesNotExist:
+          raise NotFound(detail="Can't find that user")
