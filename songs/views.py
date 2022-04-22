@@ -292,9 +292,12 @@ class ContextUpdateDelete(APIView):
 class ContextRetrieveBySongAndFilm(APIView):
 
     def get(self, request):
+
+      songId = request.GET.get('songId')
+      filmId = request.GET.get('filmId')
         
-        context = Context.objects.filter(song=song_pk, film=film_pk)
+      context = list(Context.objects.filter(song=songId, film=filmId).values())
 
-        serialized_context = PopulatedContextSerializer(context)
+      serialized_context = PopulatedContextSerializer(context[0])
 
-        return Response(data=serialized_context.data, status=status.HTTP_200_OK)
+      return Response(data=serialized_context.data, status=status.HTTP_200_OK)
