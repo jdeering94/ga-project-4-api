@@ -23,7 +23,7 @@ class Film (models.Model):
 
 class Song (models.Model):
   name = models.CharField(max_length=200)
-  films = models.ManyToManyField(Film, related_name='songs', through='Context')
+  films = models.ManyToManyField(Film, related_name='songs', through='Context', blank=True)
   album = models.ForeignKey(Album, related_name='songs', max_length=100, on_delete=models.CASCADE)
   artist = models.ForeignKey(Artist, related_name='songs', max_length=50, on_delete=models.CASCADE)
   year = models.IntegerField()
