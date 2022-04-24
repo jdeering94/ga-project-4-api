@@ -78,13 +78,13 @@ class FilmListCreate(APIView):
 
     def post(self, request):
 
-        film_serializer = PopulatedFilmSerializer(data=request.data)
+        film_serializer = FilmSerializer(data=request.data)
 
         if film_serializer.is_valid():
 
             film_serializer.save()
 
-            return Response(data=film_serializer.data, status=status.HTTP_200_OK)
+            return Response(status=201)
 
         return Response(data=film_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -309,6 +309,18 @@ class ContextRetrieveAllForSong(APIView):
       songId = request.GET.get('songId')
         
       context = list(Context.objects.filter(song=songId))
+
+      serialized_context = PopulatedContextSerializer(context, many=True)
+
+      return Response(data=serialized_context.data, status=status.HTTP_200_OK)
+
+class ContextRetrieveAllForFilm(APIView):
+
+    def get(self, request):
+
+      filmId = request.GET.get('filmId')
+        
+      context = list(Context.objects.filter(film=filmId))
 
       serialized_context = PopulatedContextSerializer(context, many=True)
 
