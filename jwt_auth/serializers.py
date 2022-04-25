@@ -37,4 +37,4 @@ class CustomUserSerializer(serializers.ModelSerializer):
   # liked_songs = SongSerializer(many=True)
   class Meta:
     model = User
-    fields = ('username', 'image', 'liked_songs')
+    fields = ('username', 'image', 'liked_songs', 'reviews')

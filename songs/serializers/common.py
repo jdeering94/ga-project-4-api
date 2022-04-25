@@ -2,7 +2,7 @@ from rest_framework import serializers
 
 # from jwt_auth.models import CustomUser
 from jwt_auth.serializers import UserSerializer
-from reviews.serializers import ReviewSerializer
+from reviews.serializers import PopulatedReviewSerializer
 from ..models import *
 
 class SongSerializer(serializers.ModelSerializer):
@@ -58,3 +58,4 @@ class ContextSerializer(serializers.ModelSerializer):
 class PopulatedContextSerializer(ContextSerializer):
   song = SongSerializer()
   film = FilmSerializer()
+  reviews = PopulatedReviewSerializer(many=True)
