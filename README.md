@@ -19,13 +19,15 @@ Song to Film is a webiste dedicated to discovering song usage in films, users ca
 
 ### Day 1/2: Planning
 
-Used excalidraw to plan the frontend of the app, and quickdatabasediagrams for the ERD.
+Used excalidraw to plan the frontend of the app, and quickdatabasediagrams for the ERD. The MVP requirements were set, and many stretch goals identified.
 
 ### Day 2/3: Backend
 
 This process was mainly straightforward, using postman to test the API calls. The main focus was the structure of the database and how the usage of the songs would fit into it. This was enabled by using a through table, allowing for the usage to exist only on the joins of the song and film tables.
 
 ### Day 4-6: Frontend
+
+Some time was devoted to making sure the frontend and backend would speak to each other. Once I had basic functionality, i.e. being able to GET songs and films, I decided to start with the simpler pages such as login and signup. These pages were developed to an MVP standard, as some of my stretch goals included refining these pages and giving the use more feedback.
 
 ### Day 7: Bug Fixes/Stretch Goals
 
