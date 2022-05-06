@@ -21,11 +21,6 @@ Song to Film is a webiste dedicated to discovering song usage in films, users ca
 
 Used excalidraw to plan the frontend of the app, and quickdatabasediagrams for the ERD.
 
-<p align="center">
-<img src="./assets/song-to-film-excalidraw.png" width="47%"/>
-<img src="./assets/song-to-film-ERD.png" width="47%"/>
-</p>
-
 ### Day 2/3: Backend
 
 ### Day 4-6: Frontend
@@ -33,6 +28,11 @@ Used excalidraw to plan the frontend of the app, and quickdatabasediagrams for t
 ### Day 7: Bug Fixes/Stretch Goals
 
 ### Wireframes:
+
+<p align="center">
+<img src="./assets/song-to-film-excalidraw.png" width="47%"/>
+<img src="./assets/song-to-film-ERD.png" width="47%"/>
+</p>
 
 ## Major Hurdles
 
