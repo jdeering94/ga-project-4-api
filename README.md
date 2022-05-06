@@ -23,6 +23,8 @@ Used excalidraw to plan the frontend of the app, and quickdatabasediagrams for t
 
 ### Day 2/3: Backend
 
+This process was mainly straightforward, using postman to test the API calls. The main focus was the structure of the database and how the usage of the songs would fit into it. This was enabled by using a through table, allowing for the usage to exist only on the joins of the song and film tables.
+
 ### Day 4-6: Frontend
 
 ### Day 7: Bug Fixes/Stretch Goals
