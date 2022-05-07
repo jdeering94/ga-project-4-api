@@ -37,9 +37,11 @@ This process was mainly straightforward, using postman to test the API calls. Th
 
 ### Day 4-6: Frontend
 
-Some time was devoted to making sure the frontend and backend would speak to each other. Once I had basic functionality, i.e. being able to GET songs and films, I decided to start with the simpler pages such as login and signup. These pages were developed to an MVP standard, as some of my stretch goals included refining these pages and giving the use more feedback.
+Some time was devoted to making sure the frontend and backend would speak to each other. Once I had basic functionality, i.e. being able to GET songs and films, I decided to start with the simpler pages such as login and signup. These pages were developed to an MVP standard, as some of my stretch goals included refining these pages and giving the user more feedback on their errors.
 
 ### Day 7: Bug Fixes/Stretch Goals
+
+I was delayed by my struggle with some of the frontend functions, so I decided to add a few more of my stretch goals. The main difficulty was to implement a rating system on the song usages, which due to the nature of the data was a bit more difficult than expected. Due to the time constraints, the rating system is only partially finished, as it now only creates a rating when clicked, but the user has no ability to edit or remove their rating on the frontend. If I had more time, I would seek to refine this feature.
 
 ### Wireframes:
 
