@@ -2,6 +2,17 @@
 
 Backend for the 4th project
 
+# The Brief
+
+Build a full-stack application by making your own backend and your own front-end
+Use a Python Django API using Django REST Framework to serve your data from a Postgres database
+Consume your API with a separate front-end built with React
+Be a complete product which most likely means multiple relationships and CRUD functionality for at least a couple of models
+Implement thoughtful user stories/wireframes that are significant enough to help you know which features are core MVP and which you can cut.
+Have an entity relationship diagram showing your proposed database schema.
+Have a visually impressive design to kick your portfolio up a notch and have something to wow future clients & employers. ALLOW time for this.
+Be deployed online so it's publicly accessible.
+
 ## Site Overview
 
 Song to Film is a webiste dedicated to discovering song usage in films, users can search for songs to see how many films they have appeared in and how they are used. The site also allows for users to submit songs and films to be added to the database so that the data can grow from user input. The user can also save liked songs and rate the usage of songs in films.
