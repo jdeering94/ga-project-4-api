@@ -10,7 +10,7 @@ Consume your API with a separate front-end built with React
 Be a complete product which most likely means multiple relationships and CRUD functionality for at least a couple of models
 Implement thoughtful user stories/wireframes that are significant enough to help you know which features are core MVP and which you can cut.
 Have an entity relationship diagram showing your proposed database schema.
-Have a visually impressive design to kick your portfolio up a notch and have something to wow future clients & employers. ALLOW time for this.
+Have a visually impressive design.
 Be deployed online so it's publicly accessible.
 
 ## Site Overview
