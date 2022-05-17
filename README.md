@@ -156,8 +156,8 @@ I learned a lot about using a PostgresQL database, and found that I preferred it
 ### Contact Me
 Email: JDeering94@gmail.com
 
-LinkedIn: https://www.linkedin.com/in/joe-deering/
+[LinkedIn](https://www.linkedin.com/in/joe-deering/)
 
-Portfolio: joedeering.co.uk
+[Portfolio](https://www.joedeering.co.uk)
 
 Feel free to share feedback or if you are aware of any job opportunities please let me know.
